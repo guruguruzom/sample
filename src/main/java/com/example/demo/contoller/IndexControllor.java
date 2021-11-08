@@ -12,7 +12,6 @@ public class IndexControllor {
 	
 	@GetMapping(value = {"", "/"})
 	public String indexTest(HttpServletRequest request) {
-		System.out.println("±Ù´ö±Ù´ö ¼­¹ö Á×Àº°Å°°Àºµ­");
 		return "index";
 	}
 
