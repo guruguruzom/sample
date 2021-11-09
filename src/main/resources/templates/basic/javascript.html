@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body onload="unInlineScript();inlineScript();">
+	<!-- 자바스크립트 인라인 사용 전 -->
+	<script>
+		var username = '[[${user.username}]]';
+		var age = [[${user.age}]];
+		//자바스크립트 내추럴 템플릿
+		var username2 = /*[[${user.username}]]*/ "test username";
+		//객체
+		var user = '[[${user}]]';
+		var user1 = {"username":"userA","age":10};
+		var user2 = {"username":"userB","age":20};
+		var user3 = {"username":"userC","age":30};
+		
+		var unInlineScript = function(){
+			console.log(username);
+			console.log(age);
+			console.log(username2);
+			console.log(user);
+		}
+	</script>
+		<!-- 자바스크립트 인라인 사용 후 -->
+		<script th:inline="javascript">
+		var username = [[${user.username}]];
+		var age = [[${user.age}]];
+		//자바스크립트 내추럴 템플릿
+		var username2 = /*[[${user.username}]]*/ "test username";
+		//객체
+		var user = [[${user}]];
+		
+		
+		var inlineScript = function(){
+			/*[# th:each="user, stat : ${users}"]*/
+				var users[[${stat.count}]] = [[${user}]];
+			/*[/]*/
+			console.log("inline username :: " + username);
+			console.log("inline age :: " + age);
+			console.log("inline username2 :: " + username2);
+			console.log("inline user :: " + user);
+			console.log("inline users :: ");
+			console.log("inline users end ");
+		}
+	</script>
+</body>
+</html>
